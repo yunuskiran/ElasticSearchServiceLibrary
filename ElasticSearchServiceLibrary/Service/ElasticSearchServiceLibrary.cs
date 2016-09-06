@@ -35,10 +35,10 @@ namespace ElasticSearchServiceLibrary
                 _client.CreateIndex(indexName, i => indexDescriptor);
         }
 
-        public void Insert<T>(T model, string indexName, string typeName, string id)
+        public void Insert<T>(T model)
             where T : class
         {
-            _client.Index(model, c => c.Index(indexName).Type(typeName).Id(id));
+            _client.Index(model);
         }
 
         public void Delete<T>(DocumentPath<T> documentPath, Func<DeleteDescriptor<T>, DeleteDescriptor<T>> selector)
@@ -103,9 +103,9 @@ namespace ElasticSearchServiceLibrary
             return result;
         }
 
-        public async Task InsertAsync<T>(T model, string indexName, string typeName, string id) where T : class
+        public async Task InsertAsync<T>(T model) where T : class
         {
-            await _client.IndexAsync(model, c => c.Index(indexName).Type(typeName).Id(id));
+            await _client.IndexAsync(model);
         }
 
         public async Task DeleteAsync<T>(DocumentPath<T> documentPath, Func<DeleteDescriptor<T>, DeleteDescriptor<T>> selector) where T : class

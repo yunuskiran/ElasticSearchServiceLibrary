@@ -8,7 +8,7 @@ namespace ElasticSearchServiceLibrary
 {
     public interface IElasticSearchServiceLibrary
     {
-        void Insert<T>(T model, string indexName, string typeName, string id) where T : class;
+        void Insert<T>(T model) where T : class;
 
         void Delete<T>(DocumentPath<T> documentPath, Func<DeleteDescriptor<T>, DeleteDescriptor<T>> selector) where T : class;
 
@@ -22,7 +22,7 @@ namespace ElasticSearchServiceLibrary
 
         List<string> Suggest<T>(Func<SuggestDescriptor<T>, ISuggestRequest> selector, string suggestionName) where T : class;
 
-        Task InsertAsync<T>(T model, string indexName, string typeName, string id) where T : class;
+        Task InsertAsync<T>(T model) where T : class;
 
         Task DeleteAsync<T>(DocumentPath<T> documentPath, Func<DeleteDescriptor<T>, DeleteDescriptor<T>> selector) where T : class;
 
